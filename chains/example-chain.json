@@ -1,0 +1,17 @@
+{
+  "name": "Code Review Chain",
+  "description": "Analyzes code for bugs, then suggests improvements",
+  "model": "gemini-2.0-flash",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "text": "Analyze the following {{language}} code for potential bugs:\n\n```\nfunction add(a, b) {\n  return a - b;\n}\n```",
+      "contextFolder": null
+    },
+    {
+      "id": "prompt_2",
+      "text": "Based on your analysis, suggest refactoring improvements. Focus on {{focus}}.",
+      "contextFolder": null
+    }
+  ]
+}
