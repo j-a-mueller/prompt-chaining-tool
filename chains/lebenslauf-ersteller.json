@@ -1,0 +1,27 @@
+{
+  "name": "Lebenslauf-Ersteller (Europa)",
+  "description": "Eine Prompt-Kette, um eine deutschsprachige Stellenbeschreibung für einen Job in Europazu analysieren und meinen Lebenslauf anzupassen",
+  "model": "gemini-3.1-pro-preview",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "text": "Fasse die wichtigsten Anforderungen in dieser Stelle zusammen.\n\nStellenbeschreibung:\n{{stellenbeschreibung}}",
+      "contextFolder": null
+    },
+    {
+      "id": "prompt_2",
+      "text": "Erkläre, wie ich argumentieren kann, dass ich diese Anforderungen erfülle, basierend auf meinen Fähigkeiten und Erfahrungen, wie in meinem Lebenslauf, Abschlusszeugnisse und Arbeitszeugnisse aufgeführt.",
+      "contextFolder": "../context/cv-creation-europe/"
+    },
+    {
+      "id": "prompt_3",
+      "text": "Aktualisiere meinen Lebenslauf für diese Position unter Verwendung einfacher Punkte.",
+      "contextFolder": null
+    },
+    {
+      "id": "prompt_4",
+      "text": "Schreibe einen Anschreiben für mich unter Verwendung der vorherigen Punkte.",
+      "contextFolder": null
+    }
+  ]
+}

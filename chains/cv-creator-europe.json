@@ -1,6 +1,6 @@
 {
-  "name": "Resume creator (Canada)",
-  "description": "A prompt chain to analyse a job description for a job in Canada and tailor my resume to it",
+  "name": "CV creator (Europe)",
+  "description": "A prompt chain to analyse a job description written in English for a job in Europe and tailor my resume to it.",
   "model": "gemini-3.1-pro-preview",
   "prompts": [
     {
@@ -10,12 +10,12 @@
     },
     {
       "id": "prompt_2",
-      "text": "Explain how I can argue that I meet these requirements based on my skills and experience as listed in my resume, academic transcripts and letters of recommendation.",
-      "contextFolder": "../context/resume-creation-canada/"
+      "text": "Explain how I can argue that I meet these requirements based on my skills and experience as listed in my CV, academic transcripts and letters of recommendation.",
+      "contextFolder": "../context/cv-creation-europe/"
     },
     {
       "id": "prompt_3",
-      "text": "Update my resume for this position using simple points.",
+      "text": "Update my CV for this position using simple points.",
       "contextFolder": null
     },
     {
