@@ -1,0 +1,27 @@
+{
+  "name": "Resume creator (Canada)",
+  "description": "A prompt chain to analyse a job description and tailor my resume to it",
+  "model": "gemini-3.1-pro-preview",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "text": "Outline the key requirements of this position based on the job description.\n\nJob description:\n{{job description}}",
+      "contextFolder": null
+    },
+    {
+      "id": "prompt_2",
+      "text": "Explain how I can argue that I meet these requirements based on my skills and experience as listed in my resume, academic transcripts and letter of recommendation.",
+      "contextFolder": "../context/resume-creation/"
+    },
+    {
+      "id": "prompt_3",
+      "text": "Update my resume for this position using simple points.",
+      "contextFolder": null
+    },
+    {
+      "id": "prompt_4",
+      "text": "Write a cover letter for me using the previous points.",
+      "contextFolder": null
+    }
+  ]
+}
