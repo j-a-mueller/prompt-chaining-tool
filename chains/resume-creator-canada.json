@@ -1,6 +1,6 @@
 {
   "name": "Resume creator (Canada)",
-  "description": "A prompt chain to analyse a job description for a job in Canada and tailor my resume to it",
+  "description": "A prompt chain to analyse a job description for a job in Canada and tailor my resume to it.",
   "model": "gemini-3.1-pro-preview",
   "prompts": [
     {

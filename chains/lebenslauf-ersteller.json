@@ -1,6 +1,6 @@
 {
   "name": "Lebenslauf-Ersteller (Europa)",
-  "description": "Eine Prompt-Kette, um eine deutschsprachige Stellenbeschreibung für einen Job in Europazu analysieren und meinen Lebenslauf anzupassen",
+  "description": "Eine Prompt-Kette, um eine deutschsprachige Stellenbeschreibung für einen Job in Europazu analysieren und meinen Lebenslauf anzupassen.",
   "model": "gemini-3.1-pro-preview",
   "prompts": [
     {
