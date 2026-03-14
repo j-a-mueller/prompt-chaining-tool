@@ -75,10 +75,15 @@ export async function getPromptStep(index) {
     message: "Context folder path (relative to chain file, or leave empty):",
   });
 
+  const output = await input({
+    message: "Output file path (relative to chain file, or leave empty):",
+  });
+
   return {
     id: `prompt_${index + 1}`,
     text: text.trim(),
     contextFolder: contextFolder.trim() || null,
+    output: output.trim() || null,
   };
 }
 

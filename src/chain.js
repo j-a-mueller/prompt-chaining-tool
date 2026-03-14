@@ -11,6 +11,7 @@ import {
   sleep,
 } from "./utils.js";
 import { dirname, join } from "node:path";
+import { mkdir, writeFile } from "node:fs/promises";
 
 const VARIABLE_REGEX = /\{\{(\w+)\}\}/g;
 
@@ -102,6 +103,15 @@ export async function executeChain(chainDef) {
 
     const responseText = response.text ?? "(empty response)";
     printResponse(responseText);
+
+    // Save response to file if output path is specified
+    if (prompt.output) {
+      const baseDir = chainDir || process.cwd();
+      const outputPath = join(baseDir, prompt.output);
+      await mkdir(dirname(outputPath), { recursive: true });
+      await writeFile(outputPath, responseText, "utf-8");
+      printInfo(`  Response saved to ${outputPath}\n`);
+    }
   }
 
   printInfo("Chain completed.\n");

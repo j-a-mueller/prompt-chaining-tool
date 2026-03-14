@@ -6,22 +6,26 @@
     {
       "id": "prompt_1",
       "text": "Outline the key requirements of this position based on the job description.\n\nJob description:\n{{job description}}",
-      "contextFolder": null
+      "contextFolder": null,
+      "output": null
     },
     {
       "id": "prompt_2",
       "text": "Explain how I can argue that I meet these requirements based on my skills and experience as listed in my resume, academic transcripts and letters of recommendation.",
-      "contextFolder": "../context/resume-creation-canada/"
+      "contextFolder": "../context/resume-creation-canada/",
+      "output": null
     },
     {
       "id": "prompt_3",
       "text": "Update my resume for this position using simple points.",
-      "contextFolder": null
+      "contextFolder": null,
+      "output": null
     },
     {
       "id": "prompt_4",
       "text": "Write a cover letter for me using the previous points.",
-      "contextFolder": null
+      "contextFolder": null,
+      "output": null
     }
   ]
 }
