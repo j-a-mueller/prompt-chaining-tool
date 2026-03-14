@@ -19,13 +19,13 @@
       "id": "prompt_3",
       "text": "Aktualisiere meinen Lebenslauf für diese Position unter Verwendung einfacher Punkte. Gib reines Markdown zurück.",
       "contextFolder": null,
-      "output": "../output/"
+      "output": "../output/lebenslauf.md"
     },
     {
       "id": "prompt_4",
       "text": "Schreibe einen Anschreiben für mich unter Verwendung der vorherigen Punkte. Gib reines Markdown zurück.",
       "contextFolder": null,
-      "output": "../output/"
+      "output": "../output/anschreiben.md"
     }
   ]
 }

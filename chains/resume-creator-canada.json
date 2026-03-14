@@ -19,13 +19,13 @@
       "id": "prompt_3",
       "text": "Update my resume for this position using simple points. Return raw markdown.",
       "contextFolder": null,
-      "output": "../output/"
+      "output": "../output/resume.md"
     },
     {
       "id": "prompt_4",
       "text": "Write a cover letter for me using the previous points. Return raw markdown.",
       "contextFolder": null,
-      "output": "../output/"
+      "output": "../output/cover_letter.md"
     }
   ]
 }
