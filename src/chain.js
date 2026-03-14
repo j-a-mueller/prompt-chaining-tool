@@ -1,4 +1,4 @@
-import { input } from "@inquirer/prompts";
+import { editor } from "@inquirer/prompts";
 import { createClient } from "./gemini.js";
 import { loadContextParts } from "./context.js";
 import {
@@ -34,7 +34,7 @@ export async function resolveVariables(chainDef) {
 
   const values = {};
   for (const name of variableNames) {
-    values[name] = await input({ message: `${name}:` });
+    values[name] = (await editor({ message: `${name}:`, waitForUseInput: false })).trim();
   }
 
   // Deep-clone prompts with substituted text
