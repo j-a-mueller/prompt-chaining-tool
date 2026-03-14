@@ -53,7 +53,8 @@ Chains are JSON files in `chains/`:
     {
       "id": "prompt_2",
       "text": "Suggest improvements based on your analysis.",
-      "contextFolder": null
+      "contextFolder": null,
+      "output": "output/improvements.md"
     }
   ]
 }
@@ -70,6 +71,19 @@ Set `contextFolder` on a prompt to attach files. The path is relative to the cha
 - **Text files** (`.txt`, `.md`, `.js`, `.py`, `.json`, etc.) — read as UTF-8
 - **Binary files** (`.pdf`, `.png`, `.jpg`, `.gif`, `.webp`) — sent as inline data
 - Files over 10MB are skipped with a warning
+
+### Output Files
+
+Set `output` on a prompt to save its response to a file. The path is relative to the chain JSON file. Parent directories are created automatically. If `output` is omitted or `null`, the response is only printed to the terminal.
+
+```json
+{
+  "id": "prompt_2",
+  "text": "Suggest improvements based on your analysis.",
+  "contextFolder": null,
+  "output": "output/improvements.md"
+}
+```
 
 ### Editor Configuration
 
