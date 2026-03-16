@@ -1,0 +1,21 @@
+{
+  "name": "Code Review",
+  "description": "Reviews code for bugs, suggests improvements, and generates a summary report.",
+  "model": "gemini-2.0-flash",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "text": "Review the following {{language}} code for bugs, logic errors, and potential runtime issues. List each issue with its severity (critical, warning, or info) and a brief explanation.",
+      "contextFolder": "context/code-review/"
+    },
+    {
+      "id": "prompt_2",
+      "text": "Now suggest concrete improvements for readability, performance, and best practices. For each suggestion, show a before and after code snippet."
+    },
+    {
+      "id": "prompt_3",
+      "text": "Write a concise summary report in markdown that includes: a one-paragraph overview, the top 3 most important issues found, and the top 3 recommended improvements. Keep it actionable and under 500 words.",
+      "output": "output/code-review-report.md"
+    }
+  ]
+}

@@ -3,3 +3,4 @@ context/
 output/
 .env
 .prompt-chaining-tool.json
+.DS_Store

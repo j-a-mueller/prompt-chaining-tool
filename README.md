@@ -61,7 +61,7 @@ Chains are JSON files in your configured chains directory:
     {
       "id": "prompt_1",
       "text": "Analyze this {{language}} code for bugs.",
-      "contextFolder": "prompt_1_context"
+      "contextFolder": "context/code-review/"
     },
     {
       "id": "prompt_2",
@@ -97,6 +97,14 @@ Set `output` on a prompt to save its response to a file. The path is relative to
   "output": "output/improvements.md"
 }
 ```
+
+### Example Chains
+
+The `chains/` directory includes two example chains:
+
+**Code Review** (`code-review.json`) — Reviews code for bugs, suggests improvements, and writes a summary report. Demonstrates variables (`{{language}}`), context folders, and output files. To try it: add the source files you want reviewed to `context/code-review/`.
+
+**Resume Creator** (`resume-creator.json`) — Analyzes a job description and tailors a resume. Paste the job description when prompted (`{{job description}}`), and place your resume and supporting documents in `context/resume-creator/`. The final resume is saved to `output/resume.md`.
 
 ### Editor Configuration
 

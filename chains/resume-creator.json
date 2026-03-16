@@ -1,0 +1,21 @@
+{
+  "name": "Resume Creator",
+  "description": "Analyzes a job description and tailors a resume to it.",
+  "model": "gemini-2.5-pro",
+  "prompts": [
+    {
+      "id": "prompt_1",
+      "text": "Outline the key requirements of this position based on the job description.\n\nJob description:\n{{job description}}"
+    },
+    {
+      "id": "prompt_2",
+      "text": "Explain how I meet these requirements based on my resume and supporting documents.",
+      "contextFolder": "../context/resume-creator/"
+    },
+    {
+      "id": "prompt_3",
+      "text": "Update my resume for this position using simple points. Return raw markdown.",
+      "output": "../output/resume.md"
+    }
+  ]
+}
