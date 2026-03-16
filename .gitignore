@@ -3,3 +3,4 @@ chains/
 context/
 output/
 .env
+.prompt-chaining-tool.json

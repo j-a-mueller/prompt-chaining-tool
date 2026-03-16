@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 import { ExitPromptError } from "@inquirer/core";
+import { select, input } from "@inquirer/prompts";
 import { executeChain } from "./chain.js";
+import { getChainsDir, loadConfig, saveConfig, getConfigFilePath } from "./config.js";
 import { listChains, loadChain, saveChain } from "./storage.js";
 import {
   mainMenu,
@@ -67,9 +69,10 @@ async function handleCreateChain() {
   };
 
   // Save
+  let savedFilePath;
   try {
-    const filePath = await saveChain(chainDef);
-    printSuccess(`\nChain saved to ${filePath}`);
+    savedFilePath = await saveChain(chainDef);
+    printSuccess(`\nChain saved to ${savedFilePath}`);
   } catch (err) {
     printError(`Failed to save chain: ${err.message}`);
     return;
@@ -78,18 +81,7 @@ async function handleCreateChain() {
   // Optionally run
   const shouldRun = await askRunNow();
   if (shouldRun) {
-    const savedChain = { ...chainDef };
-    // Set _filePath so context folders resolve correctly
-    const safeName = chainDef.name
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "");
-    const { resolve } = await import("node:path");
-    savedChain._filePath = resolve(
-      new URL("../chains", import.meta.url).pathname,
-      `${safeName}.json`
-    );
-    await executeChain(savedChain);
+    await executeChain({ ...chainDef, _filePath: savedFilePath });
   }
 }
 
@@ -133,8 +125,54 @@ async function handleAdHocChain() {
   await executeChain(chainDef);
 }
 
+async function handleOptions() {
+  const action = await select({
+    message: "Options:",
+    choices: [
+      { name: "Change chains folder", value: "change" },
+      { name: "View current settings", value: "view" },
+      { name: "Back to main menu", value: "back" },
+    ],
+  });
+
+  switch (action) {
+    case "change": {
+      const currentDir = await getChainsDir();
+      printInfo(`\nCurrent chains folder: ${currentDir}\n`);
+
+      const newPath = await input({
+        message: "New chains folder path (relative to cwd or absolute):",
+      });
+
+      if (!newPath.trim()) {
+        printInfo("No changes made.\n");
+        return;
+      }
+
+      const config = await loadConfig();
+      config.chainsDir = newPath.trim();
+      await saveConfig(config);
+
+      const resolvedDir = await getChainsDir();
+      printSuccess(`\nChains folder updated to: ${resolvedDir}`);
+      printInfo(`Config saved to: ${getConfigFilePath()}\n`);
+      break;
+    }
+    case "view": {
+      const chainsDir = await getChainsDir();
+      const configPath = getConfigFilePath();
+      printInfo(`\nChains folder: ${chainsDir}`);
+      printInfo(`Config file:   ${configPath}\n`);
+      break;
+    }
+    case "back":
+      return;
+  }
+}
+
 async function main() {
   printHeader();
+  printInfo(`Chains folder: ${await getChainsDir()}\n`);
 
   while (true) {
     try {
@@ -149,6 +187,9 @@ async function main() {
           break;
         case "adhoc":
           await handleAdHocChain();
+          break;
+        case "options":
+          await handleOptions();
           break;
         case "exit":
           printInfo("Goodbye!\n");

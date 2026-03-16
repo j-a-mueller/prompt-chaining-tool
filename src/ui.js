@@ -11,6 +11,7 @@ export async function mainMenu() {
       { name: "Run a saved chain", value: "run" },
       { name: "Create a new chain", value: "create" },
       { name: "Run a quick ad-hoc chain", value: "adhoc" },
+      { name: "Options", value: "options" },
       { name: "Exit", value: "exit" },
     ],
   });
@@ -21,7 +22,7 @@ export async function mainMenu() {
  */
 export async function selectChain(chains) {
   if (chains.length === 0) {
-    console.log(chalk.dim("\n  No saved chains found in chains/ directory.\n"));
+    console.log(chalk.dim("\n  No saved chains found in the configured chains directory.\n"));
     return null;
   }
 

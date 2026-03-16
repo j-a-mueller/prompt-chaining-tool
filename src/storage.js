@@ -1,33 +1,33 @@
 import { readdir, readFile, writeFile, mkdir } from "node:fs/promises";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { printError, printWarning } from "./utils.js";
-
-const CHAINS_DIR = resolve(new URL("../chains", import.meta.url).pathname);
+import { getChainsDir } from "./config.js";
 
 /**
- * Ensures the chains/ directory exists, creating it if needed.
+ * Ensures the given chains directory exists, creating it if needed.
  */
-async function ensureChainsDir() {
+async function ensureChainsDir(chainsDir) {
   try {
-    await mkdir(CHAINS_DIR, { recursive: true });
+    await mkdir(chainsDir, { recursive: true });
   } catch {
     // Already exists
   }
 }
 
 /**
- * Lists all chain JSON files in the chains/ directory.
+ * Lists all chain JSON files in the chains directory.
  * Returns an array of { name, description, filePath }.
  */
 export async function listChains() {
-  await ensureChainsDir();
+  const chainsDir = await getChainsDir();
+  await ensureChainsDir(chainsDir);
 
-  const entries = await readdir(CHAINS_DIR);
+  const entries = await readdir(chainsDir);
   const chains = [];
 
   for (const entry of entries) {
     if (!entry.endsWith(".json")) continue;
-    const filePath = join(CHAINS_DIR, entry);
+    const filePath = join(chainsDir, entry);
     try {
       const raw = await readFile(filePath, "utf-8");
       const chain = JSON.parse(raw);
@@ -57,11 +57,12 @@ export async function loadChain(filePath) {
 }
 
 /**
- * Saves a chain definition to a JSON file in the chains/ directory.
+ * Saves a chain definition to a JSON file in the chains directory.
  * Returns the file path.
  */
 export async function saveChain(chain) {
-  await ensureChainsDir();
+  const chainsDir = await getChainsDir();
+  await ensureChainsDir(chainsDir);
 
   // Generate a filename from the chain name
   const safeName = chain.name
@@ -69,7 +70,7 @@ export async function saveChain(chain) {
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
   const fileName = `${safeName}.json`;
-  const filePath = join(CHAINS_DIR, fileName);
+  const filePath = join(chainsDir, fileName);
 
   // Don't save internal properties
   const { _filePath, ...cleanChain } = chain;
