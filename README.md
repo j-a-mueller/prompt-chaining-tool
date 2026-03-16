@@ -31,13 +31,26 @@ prompt-chain
 
 ### Main Menu
 
-- **Run a saved chain** — pick from `chains/*.json` and execute
+- **Run a saved chain** — pick from your chains directory and execute
 - **Create a new chain** — build a chain interactively and save it
 - **Run a quick ad-hoc chain** — enter prompts on the fly without saving
+- **Options** — configure the chains folder and view current settings
+
+### Configuring the Chains Folder
+
+By default, chains are stored in the `chains/` directory next to the tool installation. To use a different directory, select **Options > Change chains folder** from the main menu. This saves a `.prompt-chaining-tool.json` config file in the current working directory:
+
+```json
+{
+  "chainsDir": "./my-chains"
+}
+```
+
+The path can be relative (resolved from cwd) or absolute. Each working directory can have its own config, so different projects can use different chain folders. Delete the config file to revert to the default.
 
 ### Chain Format
 
-Chains are JSON files in `chains/`:
+Chains are JSON files in your configured chains directory:
 
 ```json
 {
