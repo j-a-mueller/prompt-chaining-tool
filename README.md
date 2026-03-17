@@ -77,6 +77,8 @@ Chains are JSON files in your configured chains directory:
 
 Use `{{variableName}}` in prompt text. The CLI will ask for values before execution.
 
+**Note:** Variable names must be single words without spaces. Use `{{job_description}}` or `{{jobDescription}}`, not `{{job description}}`.
+
 ### Context Folders
 
 Set `contextFolder` on a prompt to attach files. The path is relative to the chain JSON file. Supported:
